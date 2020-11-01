@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import './SignIn.css';
 import { useAuth } from '../../Context/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import firebase from 'firebase';
 
 export const SignIn: React.FC = () => {
 
@@ -28,10 +29,23 @@ export const SignIn: React.FC = () => {
                await signin(email, password);
                history.push("/");
           } catch {
-               setError("Failed to create account, please try again!");
+               setError("Failed to signin. Please try again.");
           }
           setLoading(false);
      }
+
+     const handleGoogleLogin = async () => {
+          try {
+               setError("");
+               setLoading(true);
+               let provider = new firebase.auth.GoogleAuthProvider();
+               await firebase.auth().signInWithPopup(provider);
+               history.push("/");
+          } catch {
+               setError("Couldn't sigin using Gmail. Try again.")
+          }
+     }
+
      return (
           <>
                <div className="formContainer">
@@ -96,7 +110,7 @@ export const SignIn: React.FC = () => {
 
                </div>
 
-               <div className="googleLogin">
+               <div className="googleLogin" onClick={ handleGoogleLogin }>
                     <svg xmlns="http://www.w3.org/2000/svg" className="gmailSVG" viewBox="0 0 48 48" width="48px" height="48px">
                          <path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/>
                          <path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/>

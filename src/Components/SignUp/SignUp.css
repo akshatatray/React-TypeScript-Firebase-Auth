@@ -31,7 +31,7 @@
      height: 60px;
 }
 .inputF {
-     padding: 20px 17px 4px 16px;
+     padding: 22px 17px 2px 16px;
      font-size: 14px;
      width: calc(100% - 37px);
      height: 22px;
@@ -44,13 +44,13 @@
 }
 .inputF:focus {
      outline: 0;
-     padding: 20px 17px 4px 16px;
+     padding: 22px 17px 2px 16px;
 }
 .inputF:focus + .inputLabel,
 .inputF:not(:placeholder-shown) + .inputLabel {
      font-size: 14px;
      color: rgb(110, 110, 110);
-     transform: translate(17px, -46px);
+     transform: translate(17px, -44px);
 }
 .inputLabel {
      display: block;
